@@ -1,0 +1,37 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.nav {
+  background-color: bisque;
+  display: flex;
+  /* 設定彈性容器，好讓裡面的子元素排序可改變 */
+  justify-content: space-between;
+  /* 設定整行怎麼排序，目前Space-between，是左右撐開 */
+  align-items: center;
+  /* 設定字體目前怎麼設計 */
+  padding: 24px 48px;
+  /* padding: 上下 左右; */
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.navTitle {
+  font-size: 2rem;
+}
+
+.nav ul {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  gap: 1rem;
+}
+
+.nav a {
+  color: inherit;
+}
