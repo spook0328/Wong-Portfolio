@@ -1,0 +1,132 @@
+.projects {
+  width: 100%;
+  min-height: calc(100vh - 80px);
+}
+
+.projects-hero {
+  padding: 5rem 5%;
+  min-height: calc(100vh - 80px);
+}
+
+.projects-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 標題 */
+.projects-title {
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  margin-bottom: 4rem;
+  line-height: 1;
+}
+
+/* 專案網格 */
+.projects-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+/* 專案卡片 */
+.project-card {
+  border-top: 1px solid #000000;
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.project-card:hover {
+  opacity: 0.7;
+}
+
+/* 專案標題區域 */
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 2rem;
+}
+
+.project-title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.project-year {
+  font-size: 1rem;
+  color: #666666;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+/* 專案描述 */
+.project-description {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  line-height: 1.7;
+  color: #666666;
+  max-width: 700px;
+}
+
+/* 標籤 */
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.project-tag {
+  font-size: 0.875rem;
+  color: #000000;
+  padding: 0.5rem 1rem;
+  border: 1px solid #000000;
+  display: inline-block;
+  letter-spacing: 0.02em;
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .project-tag {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .projects-hero {
+    padding: 3rem 5%;
+  }
+
+  .projects-title {
+    margin-bottom: 3rem;
+  }
+
+  .projects-grid {
+    gap: 3rem;
+  }
+
+  .project-header {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-hero {
+    padding: 2rem 5%;
+  }
+
+  .project-card {
+    padding-top: 1.5rem;
+  }
+
+  .projects-grid {
+    gap: 2.5rem;
+  }
+}

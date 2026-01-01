@@ -1,37 +1,152 @@
-* {
-  box-sizing: border-box;
+/* 全局變數 - 黑白配色方案 */
+:root {
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-gray-light: #f5f5f5;
+  --color-gray-medium: #999999;
+  --color-gray-dark: #333333;
+  --transition-speed: 0.3s;
+  --navbar-height: 80px;
 }
 
-body {
-  margin: 0;
-}
-
-.nav {
-  background-color: bisque;
+/* Navbar 容器 */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--navbar-height);
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-black);
   display: flex;
-  /* 設定彈性容器，好讓裡面的子元素排序可改變 */
   justify-content: space-between;
-  /* 設定整行怎麼排序，目前Space-between，是左右撐開 */
   align-items: center;
-  /* 設定字體目前怎麼設計 */
-  padding: 24px 48px;
-  /* padding: 上下 左右; */
-  font-size: 18px;
+  padding: 0 5%;
+  z-index: 1000;
+  transition: all var(--transition-speed) ease;
+}
+
+/* Logo 區域 */
+.navbar-logo {
+  text-decoration: none;
+  color: var(--color-black);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.navbar-logo:hover {
+  opacity: 0.7;
+}
+
+.logo-text {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.logo-subtitle {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-gray-medium);
+}
+
+/* 導航選單 */
+.navbar-menu {
+  display: flex;
+  gap: 3rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* 導航連結 */
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  color: var(--color-black);
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  transition: color var(--transition-speed) ease;
+  padding: 0.5rem 0;
+}
+
+/* 連結下劃線效果 */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-black);
+  transition: width var(--transition-speed) ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* 活動頁面樣式 */
+.nav-link.active {
   font-weight: 500;
 }
 
-.navTitle {
-  font-size: 2rem;
+.nav-link.active::after {
+  width: 100%;
 }
 
-.nav ul {
-  display: flex;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  gap: 1rem;
+/* 響應式設計 - 平板 */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 4%;
+  }
+
+  .navbar-menu {
+    gap: 2rem;
+  }
+
+  .logo-text {
+    font-size: 1.1rem;
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+  }
 }
 
-.nav a {
-  color: inherit;
+/* 響應式設計 - 手機 */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0 5%;
+    height: 70px;
+  }
+
+  .navbar-menu {
+    gap: 1.5rem;
+  }
+
+  .logo-text {
+    font-size: 1rem;
+  }
+
+  .logo-subtitle {
+    font-size: 0.7rem;
+  }
+
+  .nav-link {
+    font-size: 0.85rem;
+  }
+}
+
+/* 滾動時的效果 */
+.navbar.scrolled {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  background-color: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
 }

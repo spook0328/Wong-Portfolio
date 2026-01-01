@@ -1,0 +1,134 @@
+.about {
+  width: 100%;
+  min-height: calc(100vh - 80px);
+}
+
+.about-hero {
+  padding: 5rem 5%;
+  min-height: calc(100vh - 80px);
+}
+
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 標題 */
+.about-title {
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  margin-bottom: 4rem;
+  line-height: 1;
+}
+
+/* 內容區域 */
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+/* 文字區域 */
+.about-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 800px;
+}
+
+.about-intro {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+.about-description {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  line-height: 1.7;
+  color: #666666;
+}
+
+/* 技能區塊 */
+.skills-section {
+  border-top: 1px solid #000000;
+  padding-top: 3rem;
+}
+
+.section-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  margin-bottom: 2.5rem;
+  letter-spacing: -0.02em;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+}
+
+.skill-category {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.category-title {
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.skill-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.skill-list li {
+  font-size: 1rem;
+  color: #666666;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.skill-list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: #000000;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .about-hero {
+    padding: 3rem 5%;
+  }
+
+  .about-title {
+    margin-bottom: 3rem;
+  }
+
+  .about-content {
+    gap: 3rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-hero {
+    padding: 2rem 5%;
+  }
+
+  .skills-section {
+    padding-top: 2rem;
+  }
+}

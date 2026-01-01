@@ -1,0 +1,61 @@
+.home {
+  width: 100%;
+  min-height: calc(100vh - 80px);
+}
+
+/* Hero 區塊 */
+.hero {
+  height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5%;
+  position: relative;
+}
+
+.hero-content {
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* Hero 標題 */
+.hero-title {
+  font-size: clamp(3rem, 10vw, 8rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.title-line {
+  display: block;
+  overflow: hidden;
+}
+
+/* Hero 描述 */
+.hero-description {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: #666666;
+  max-width: 600px;
+  letter-spacing: 0.01em;
+  line-height: 1.6;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .hero {
+    height: calc(100vh - 70px);
+  }
+
+  .hero-title {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content {
+    text-align: left;
+  }
+}
