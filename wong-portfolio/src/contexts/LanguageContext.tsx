@@ -1,0 +1,110 @@
+// src/contexts/LanguageContext.tsx
+
+import { createContext, useContext, useState, ReactNode } from "react";
+
+// ════════════════════════════════════════════════════════════════
+// 📚 學習重點 1：什麼是 Context？
+// ════════════════════════════════════════════════════════════════
+// Context 就像一個「全局變數倉庫」
+// 任何組件都可以訪問，不需要一層層傳遞 props
+
+type Language = "en" | "zh";
+
+interface LanguageContextType {
+  language: Language;
+  setLanguage: (lang: Language) => void;
+  t: (key: string) => string;
+}
+
+const LanguageContext = createContext<LanguageContextType | undefined>(
+  undefined
+);
+
+// 翻譯字典
+const translations: Record<Language, Record<string, string>> = {
+  en: {
+    "nav.home": "Home",
+    "nav.about": "About",
+    "nav.projects": "Projects",
+    "nav.logo.subtitle": "Developer",
+
+    "home.title.line1": "Full-Stack",
+    "home.title.line2": "Developer",
+    "home.description":
+      "Building digital experiences with clean code and thoughtful design.",
+
+    "about.title": "About Me",
+    "about.intro":
+      "Hi, I'm Eric Wong, a passionate full-stack developer focused on creating clean, efficient, and user-friendly digital experiences.",
+    "about.description":
+      "I specialize in modern web technologies and enjoy turning complex problems into simple, elegant solutions.",
+    "about.skills": "Skills",
+    "about.frontend": "Frontend",
+    "about.backend": "Backend",
+    "about.tools": "Tools",
+
+    "projects.title": "Selected Works",
+  },
+  zh: {
+    "nav.home": "首頁",
+    "nav.about": "關於",
+    "nav.projects": "作品集",
+    "nav.logo.subtitle": "開發者",
+
+    "home.title.line1": "全端",
+    "home.title.line2": "開發者",
+    "home.description": "用乾淨的程式碼和深思熟慮的設計打造數位體驗。",
+
+    "about.title": "關於我",
+    "about.intro":
+      "嗨，我是 Eric Wong，一位熱衷於創造乾淨、高效且用戶友好的數位體驗的全端開發者。",
+    "about.description":
+      "我專精於現代網頁技術，享受將複雜問題轉化為簡單、優雅解決方案的過程。",
+    "about.skills": "技能",
+    "about.frontend": "前端",
+    "about.backend": "後端",
+    "about.tools": "工具",
+
+    "projects.title": "精選作品",
+  },
+};
+
+interface LanguageProviderProps {
+  children: ReactNode;
+}
+
+export function LanguageProvider({ children }: LanguageProviderProps) {
+  const [language, setLanguage] = useState<Language>(() => {
+    const saved = localStorage.getItem("language");
+    return saved === "en" || saved === "zh" ? saved : "zh";
+  });
+
+  const handleSetLanguage = (lang: Language) => {
+    setLanguage(lang);
+    localStorage.setItem("language", lang);
+  };
+
+  const t = (key: string): string => {
+    return translations[language][key] || key;
+  };
+
+  const value = {
+    language,
+    setLanguage: handleSetLanguage,
+    t,
+  };
+
+  return (
+    <LanguageContext.Provider value={value}>
+      {children}
+    </LanguageContext.Provider>
+  );
+}
+
+export function useLanguage() {
+  const context = useContext(LanguageContext);
+  if (context === undefined) {
+    throw new Error("useLanguage must be used within a LanguageProvider");
+  }
+  return context;
+}

@@ -28,7 +28,8 @@ export default function About() {
                   <ul className="skill-list">
                     <li>React / TypeScript</li>
                     <li>HTML / CSS</li>
-                    <li>Responsive Design</li>
+                    <li>JavaScript</li>
+                    <li>TypeScript</li>
                   </ul>
                 </div>
 
@@ -36,8 +37,20 @@ export default function About() {
                   <h3 className="category-title">Backend</h3>
                   <ul className="skill-list">
                     <li>Node.js</li>
-                    <li>Database Design</li>
-                    <li>API Development</li>
+                    <li>Express</li>
+                    <li>PHP</li>
+                    <li>Java</li>
+                    <li>C#</li>
+                  </ul>
+                </div>
+
+                <div className="skill-category">
+                  <h3 className="category-title">Database</h3>
+                  <ul className="skill-list">
+                    <li>SQL</li>
+                    <li>NoSQL</li>
+                    <li>MongoDB</li>
+                    <li>Postgre SQL</li>
                   </ul>
                 </div>
 
@@ -46,7 +59,7 @@ export default function About() {
                   <ul className="skill-list">
                     <li>Git / GitHub</li>
                     <li>VS Code</li>
-                    <li>Design Tools</li>
+                    <li>Linux</li>
                   </ul>
                 </div>
               </div>

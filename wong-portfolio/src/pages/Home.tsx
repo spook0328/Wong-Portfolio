@@ -6,11 +6,13 @@ export default function Home() {
       <section className="hero">
         <div className="hero-content">
           <h1 className="hero-title">
-            <span className="title-line">Full-Stack</span>
-            <span className="title-line">Developer</span>
+            <span className="title-line">Hi!</span>
+            <span className="title-line">I'm Jui Hsin Wong</span>
           </h1>
           <p className="hero-description">
-            Building digital experiences with clean code and thoughtful design.
+            Deeply rooted in programming and education, we create new digital
+            experiences with concise code and intuitive design.
+            深耕於程式及教育，用簡潔程式碼和直觀設計打造新的數位體驗。
           </p>
         </div>
       </section>
