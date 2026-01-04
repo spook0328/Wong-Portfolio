@@ -1,6 +1,6 @@
 // src/components/ProjectCard/ProjectCard.tsx
 
-import { Project } from "../../data/projects";
+import type { Project } from "../../data/projects";
 import { useLanguage } from "../../contexts/LanguageContext";
 import "./ProjectCard.css";
 
