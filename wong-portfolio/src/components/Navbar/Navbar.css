@@ -55,6 +55,13 @@
   color: var(--color-gray-medium);
 }
 
+/* 右側容器 - 確保選單和語言切換器在同一行 */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
 /* 導航選單 */
 .navbar-menu {
   display: flex;
@@ -62,6 +69,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  align-items: center; /* 確保垂直置中 */
 }
 
 /* 導航連結 */
@@ -74,6 +82,7 @@
   letter-spacing: 0.02em;
   transition: color var(--transition-speed) ease;
   padding: 0.5rem 0;
+  white-space: nowrap; /* 防止文字換行 */
 }
 
 /* 連結下劃線效果 */
@@ -107,6 +116,10 @@
     padding: 0 4%;
   }
 
+  .navbar-right {
+    gap: 1.5rem;
+  }
+
   .navbar-menu {
     gap: 2rem;
   }
@@ -125,6 +138,10 @@
   .navbar {
     padding: 0 5%;
     height: 70px;
+  }
+
+  .navbar-right {
+    gap: 1rem;
   }
 
   .navbar-menu {

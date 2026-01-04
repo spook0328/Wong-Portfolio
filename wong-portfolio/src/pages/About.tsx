@@ -1,30 +1,34 @@
 import "./About.css";
+import { useLanguage } from "../contexts/LanguageContext";
 
 export default function About() {
+  const { t } = useLanguage();
+
   return (
     <div className="about">
       <section className="about-hero">
         <div className="about-container">
-          <h1 className="about-title">About Me</h1>
+          <h1 className="about-title">{t("about.title")}</h1>
+
           <div className="about-content">
             <div className="about-text">
-              <p className="about-intro">
-                Hi, I'm Eric Wong, a passionate full-stack developer focused on
-                creating clean, efficient, and user-friendly digital
-                experiences.
-              </p>
-              <p className="about-description">
-                I specialize in modern web technologies and enjoy turning
-                complex problems into simple, elegant solutions. My approach
-                combines technical expertise with thoughtful design.
-              </p>
+              <p className="about-intro">{t("about.intro")}</p>
+              <p className="about-description">{t("about.description")}</p>
+            </div>
+
+            <div className="about-pic">
+              <img
+                src="./public/profile_pic.jpg"
+                alt="profile_pic"
+                className="profile-pic"
+              />
             </div>
 
             <div className="skills-section">
-              <h2 className="section-title">Skills</h2>
+              <h2 className="section-title">{t("about.skills")}</h2>
               <div className="skills-grid">
                 <div className="skill-category">
-                  <h3 className="category-title">Frontend</h3>
+                  <h3 className="category-title">{t("about.frontend")}</h3>
                   <ul className="skill-list">
                     <li>React / TypeScript</li>
                     <li>HTML / CSS</li>
@@ -34,7 +38,7 @@ export default function About() {
                 </div>
 
                 <div className="skill-category">
-                  <h3 className="category-title">Backend</h3>
+                  <h3 className="category-title">{t("about.backend")}</h3>
                   <ul className="skill-list">
                     <li>Node.js</li>
                     <li>Express</li>
@@ -45,7 +49,7 @@ export default function About() {
                 </div>
 
                 <div className="skill-category">
-                  <h3 className="category-title">Database</h3>
+                  <h3 className="category-title">{t("about.database")}</h3>
                   <ul className="skill-list">
                     <li>SQL</li>
                     <li>NoSQL</li>
@@ -55,7 +59,7 @@ export default function About() {
                 </div>
 
                 <div className="skill-category">
-                  <h3 className="category-title">Tools</h3>
+                  <h3 className="category-title">{t("about.tools")}</h3>
                   <ul className="skill-list">
                     <li>Git / GitHub</li>
                     <li>VS Code</li>

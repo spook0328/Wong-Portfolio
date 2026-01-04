@@ -1,6 +1,7 @@
 // src/contexts/LanguageContext.tsx
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState } from "react";
+import type { ReactNode } from "react";
 
 // ════════════════════════════════════════════════════════════════
 // 📚 學習重點 1：什麼是 Context？
@@ -28,8 +29,6 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.projects": "Projects",
     "nav.logo.subtitle": "Developer",
 
-    "home.title.line1": "Full-Stack",
-    "home.title.line2": "Developer",
     "home.description":
       "Building digital experiences with clean code and thoughtful design.",
 
@@ -41,6 +40,7 @@ const translations: Record<Language, Record<string, string>> = {
     "about.skills": "Skills",
     "about.frontend": "Frontend",
     "about.backend": "Backend",
+    "about.database": "Database",
     "about.tools": "Tools",
 
     "projects.title": "Selected Works",
@@ -49,20 +49,19 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.home": "首頁",
     "nav.about": "關於",
     "nav.projects": "作品集",
-    "nav.logo.subtitle": "開發者",
+    "nav.logo.subtitle": "Developer",
 
-    "home.title.line1": "全端",
-    "home.title.line2": "開發者",
-    "home.description": "用乾淨的程式碼和深思熟慮的設計打造數位體驗。",
+    "home.description":
+      "深耕於程式及教育，用簡潔程式碼和直觀設計打造新的數位體驗。",
 
     "about.title": "關於我",
-    "about.intro":
-      "嗨，我是 Eric Wong，一位熱衷於創造乾淨、高效且用戶友好的數位體驗的全端開發者。",
+    "about.intro": "嗨，我是 翁睿昕，一位熱衷於網頁設計的開發者。",
     "about.description":
-      "我專精於現代網頁技術，享受將複雜問題轉化為簡單、優雅解決方案的過程。",
+      "熟悉現代網頁技術，享受將複雜問題轉化為簡單、優雅解決方案的過程。",
     "about.skills": "技能",
     "about.frontend": "前端",
     "about.backend": "後端",
+    "about.database": "資料庫",
     "about.tools": "工具",
 
     "projects.title": "精選作品",

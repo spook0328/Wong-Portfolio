@@ -1,43 +1,48 @@
+/* src/components/LanguageSwitcher/LanguageSwitcher.css */
+
 .language-switcher {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 0.875rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.75rem;
+  gap: 0.3rem;
+  font-size: 0.9rem;
+  padding: 0.5rem 0;
+  color: var(--color-black);
   transition: opacity 0.3s ease;
+  white-space: nowrap; /* 防止換行 */
 }
 
 .language-switcher:hover {
-  opacity: 0.7;
-}
-
-.language-switcher:active {
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 .current-lang {
-  color: #000000;
-  font-weight: 600;
+  font-weight: 500;
+  color: var(--color-black);
 }
 
 .lang-separator {
-  color: #cccccc;
+  color: var(--color-gray-medium);
   font-weight: 300;
 }
 
 .other-lang {
-  color: #999999;
+  color: var(--color-gray-medium);
   font-weight: 400;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .language-switcher {
+    font-size: 0.85rem;
+  }
 }
 
 @media (max-width: 480px) {
   .language-switcher {
     font-size: 0.8rem;
-    padding: 0.4rem 0.6rem;
+    gap: 0.2rem;
   }
 }

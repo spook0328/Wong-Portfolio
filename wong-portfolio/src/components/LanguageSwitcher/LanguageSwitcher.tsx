@@ -17,9 +17,9 @@ export default function LanguageSwitcher() {
       className="language-switcher"
       aria-label="Switch Language"
     >
-      <span className="current-lang">{language.toUpperCase()}</span>
+      <span className="current-lang">{language === "zh" ? "中文" : "EN"}</span>
       <span className="lang-separator">/</span>
-      <span className="other-lang">{language === "zh" ? "EN" : "ZH"}</span>
+      <span className="other-lang">{language === "zh" ? "EN" : "中文"}</span>
     </button>
   );
 }
