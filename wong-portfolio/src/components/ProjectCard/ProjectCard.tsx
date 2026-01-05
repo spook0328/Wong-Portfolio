@@ -1,35 +1,59 @@
 // src/components/ProjectCard/ProjectCard.tsx
+// ✅ 直接用這個文件替換你現有的 ProjectCard.tsx
 
+import { useState } from "react";
 import type { Project } from "../../data/projects";
 import { useLanguage } from "../../contexts/LanguageContext";
 import "./ProjectCard.css";
 
 interface ProjectCardProps {
-  project: Project; // 接收一個專案物件
+  project: Project;
 }
-
-// 為什麼使用 interface？
-// - TypeScript 會檢查我們傳入的數據是否正確
-// - 如果忘記傳入 project，會得到錯誤提示
-// - IDE 會提供自動完成功能
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   const { language } = useLanguage();
+
   const title = project.title[language];
   const description = project.description[language];
 
-  // 為什麼這樣做？
-  // - project.title 是一個物件：{ en: "...", zh: "..." }
-  // - language 是 'en' 或 'zh'
-  // - project.title[language] 會根據語言返回對應的文字
+  // 追蹤當前顯示第幾張圖片（從 0 開始）
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // ════════════════════════════════════════════════════════════════
-  // 步驟 3：處理點擊事件（如果有連結）
-  // ════════════════════════════════════════════════════════════════
+  // 計算總共有幾張圖片
+  const totalImages = project.images?.length || 0;
 
+  // 上一張圖片
+  const goToPrevious = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentImageIndex((prevIndex) => {
+      if (prevIndex === 0) {
+        return totalImages - 1; // 回到最後一張
+      }
+      return prevIndex - 1;
+    });
+  };
+
+  // 下一張圖片
+  const goToNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentImageIndex((prevIndex) => {
+      if (prevIndex === totalImages - 1) {
+        return 0; // 回到第一張
+      }
+      return prevIndex + 1;
+    });
+  };
+
+  // 點擊指示點跳到指定圖片
+  const goToImage = (index: number, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentImageIndex(index);
+  };
+
+  // 點擊卡片打開連結
   const handleClick = () => {
     if (project.link) {
-      window.open(project.link, "_blank"); // 在新標籤頁打開
+      window.open(project.link, "_blank");
     }
   };
 
@@ -38,73 +62,81 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       className={`project-card ${project.link ? "clickable" : ""}`}
       onClick={handleClick}
     >
-      {/* ══════════════════════════════════════════════════════════
-          標題區域
-          ══════════════════════════════════════════════════════════ */}
-      <div className="project-header">
-        <h2 className="project-title">{title}</h2>
-        <span className="project-year">{project.year}</span>
-      </div>
+      <div className="project-content-wrapper">
+        {/* 左側：文字內容 */}
+        <div className="project-text-section">
+          <div className="project-header">
+            <h2 className="project-title">{title}</h2>
+            <span className="project-year">{project.year}</span>
+          </div>
 
-      {/* ══════════════════════════════════════════════════════════
-          描述區域
-          ══════════════════════════════════════════════════════════ */}
-      <p className="project-description">{description}</p>
+          <p className="project-description">{description}</p>
 
-      {/* ══════════════════════════════════════════════════════════
-          標籤區域
-          ══════════════════════════════════════════════════════════ */}
-      <div className="project-tags">
-        {project.tags.map((tag, index) => (
-          <span key={index} className="project-tag">
-            {tag}
-          </span>
-        ))}
+          <div className="project-tags">
+            {project.tags.map((tag, index) => (
+              <span key={index} className="project-tag">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* 右側：圖片輪播 */}
+        {project.images && project.images.length > 0 && (
+          <div className="project-carousel-section">
+            <div className="carousel-container">
+              {/* 當前圖片 */}
+              <img
+                src={project.images[currentImageIndex]}
+                alt={`${title} - ${currentImageIndex + 1}`}
+                className="carousel-image"
+                loading="lazy"
+              />
+
+              {/* 左右箭頭（只在有多張圖片時顯示） */}
+              {totalImages > 1 && (
+                <>
+                  <button
+                    className="carousel-button carousel-button-prev"
+                    onClick={goToPrevious}
+                    aria-label="Previous image"
+                  >
+                    ←
+                  </button>
+
+                  <button
+                    className="carousel-button carousel-button-next"
+                    onClick={goToNext}
+                    aria-label="Next image"
+                  >
+                    →
+                  </button>
+                </>
+              )}
+            </div>
+
+            {/* 指示點和計數（只在有多張圖片時顯示） */}
+            {totalImages > 1 && (
+              <div className="carousel-indicators">
+                {project.images.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`indicator-dot ${
+                      index === currentImageIndex ? "active" : ""
+                    }`}
+                    onClick={(e) => goToImage(index, e)}
+                    aria-label={`Go to image ${index + 1}`}
+                  />
+                ))}
+
+                <span className="image-counter">
+                  {currentImageIndex + 1} / {totalImages}
+                </span>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </article>
   );
 }
-
-// ════════════════════════════════════════════════════════════════
-// 🎓 學習要點
-// ════════════════════════════════════════════════════════════════
-//
-// 1. **Props 解構**
-//    { project } 是從 props 中提取 project 屬性
-//    完整寫法是：
-//    function ProjectCard(props: ProjectCardProps) {
-//      const project = props.project;
-//    }
-//
-// 2. **條件類名**
-//    className={`project-card ${project.link ? 'clickable' : ''}`}
-//    - 如果有 link，添加 'clickable' 類
-//    - 用來改變游標樣式
-//
-// 3. **map 函數渲染列表**
-//    project.tags.map((tag, index) => ...)
-//    - 遍歷 tags 數組
-//    - 為每個 tag 創建一個 span
-//    - key={index} 幫助 React 追蹤元素
-//
-// 4. **多語言內容**
-//    project.title[language]
-//    - 根據當前語言動態獲取內容
-//    - 切換語言時自動更新
-//
-// ════════════════════════════════════════════════════════════════
-
-// ════════════════════════════════════════════════════════════════
-// 💡 思考練習
-// ════════════════════════════════════════════════════════════════
-//
-// 1. 如何添加專案圖片？
-//    提示：在 JSX 添加 <img src={project.image} />
-//
-// 2. 如何添加「查看更多」按鈕？
-//    提示：在 project-tags 下方添加 button
-//
-// 3. 如何實現hover時放大效果？
-//    提示：在 CSS 使用 transform: scale(1.02);
-//
-// ════════════════════════════════════════════════════════════════

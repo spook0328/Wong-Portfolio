@@ -1,21 +1,40 @@
 /* src/components/ProjectCard/ProjectCard.css */
+/* ✅ 直接用這個文件替換你現有的 ProjectCard.css */
 
 .project-card {
   border-top: 1px solid #000000;
   padding-top: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  padding-bottom: 2rem;
   transition: opacity 0.3s ease;
 }
 
-/* 如果卡片可點擊，改變游標 */
 .project-card.clickable {
   cursor: pointer;
 }
 
 .project-card.clickable:hover {
   opacity: 0.7;
+}
+
+/* ══════════════════════════════════════════════════════════
+   主要佈局：左右分欄
+   ══════════════════════════════════════════════════════════ */
+
+.project-content-wrapper {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+}
+
+/* ══════════════════════════════════════════════════════════
+   左側：文字內容
+   ══════════════════════════════════════════════════════════ */
+
+.project-text-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .project-header {
@@ -26,7 +45,7 @@
 }
 
 .project-title {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.2;
@@ -40,10 +59,9 @@
 }
 
 .project-description {
-  font-size: clamp(1rem, 2vw, 1.125rem);
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
   line-height: 1.7;
   color: #666666;
-  max-width: 700px;
 }
 
 .project-tags {
@@ -67,7 +85,154 @@
   color: #ffffff;
 }
 
+/* ══════════════════════════════════════════════════════════
+   右側：圖片輪播區域
+   ══════════════════════════════════════════════════════════ */
+
+.project-carousel-section {
+  flex: 0 0 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background-color: #f5f5f5;
+  border: 1px solid #e0e0e0;
+}
+
+.carousel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+/* ══════════════════════════════════════════════════════════
+   輪播箭頭按鈕
+   ══════════════════════════════════════════════════════════ */
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid #000000;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  color: #000000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-button-prev {
+  left: 1rem;
+}
+
+.carousel-button-next {
+  right: 1rem;
+}
+
+.carousel-button:hover {
+  opacity: 1;
+  background-color: #000000;
+  color: #ffffff;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-button:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+/* ══════════════════════════════════════════════════════════
+   圖片指示點
+   ══════════════════════════════════════════════════════════ */
+
+.carousel-indicators {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+.indicator-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid #000000;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.indicator-dot.active {
+  background-color: #000000;
+  width: 10px;
+  height: 10px;
+}
+
+.indicator-dot:hover {
+  background-color: #666666;
+}
+
+.image-counter {
+  font-size: 0.875rem;
+  color: #666666;
+  margin-left: 0.5rem;
+}
+
+/* ══════════════════════════════════════════════════════════
+   響應式設計：平板
+   ══════════════════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .project-carousel-section {
+    flex: 0 0 280px;
+  }
+
+  .project-content-wrapper {
+    gap: 2rem;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════
+   響應式設計：平板（改成上下排列）
+   ══════════════════════════════════════════════════════════ */
+
 @media (max-width: 768px) {
+  .project-content-wrapper {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .project-carousel-section {
+    flex: none;
+    width: 100%;
+  }
+
+  .carousel-container {
+    aspect-ratio: 16 / 9;
+  }
+
+  .carousel-button {
+    width: 36px;
+    height: 36px;
+    font-size: 1.125rem;
+  }
+
   .project-header {
     flex-direction: column;
     gap: 0.5rem;
@@ -75,8 +240,41 @@
   }
 }
 
+/* ══════════════════════════════════════════════════════════
+   響應式設計：手機
+   ══════════════════════════════════════════════════════════ */
+
 @media (max-width: 480px) {
   .project-card {
     padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .project-content-wrapper {
+    gap: 1.5rem;
+  }
+
+  .carousel-button {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .carousel-button-prev {
+    left: 0.5rem;
+  }
+
+  .carousel-button-next {
+    right: 0.5rem;
+  }
+
+  .indicator-dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .indicator-dot.active {
+    width: 8px;
+    height: 8px;
   }
 }

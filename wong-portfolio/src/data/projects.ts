@@ -1,8 +1,5 @@
 // src/data/projects.ts
-
-// ════════════════════════════════════════════════════════════════
-// 📚 學習重點：數據結構設計
-// ════════════════════════════════════════════════════════════════
+// ✅ 直接用這個文件替換你現有的 projects.ts
 
 export interface Project {
   id: number;
@@ -16,14 +13,9 @@ export interface Project {
   };
   year: string;
   tags: string[];
-  link?: string; // 可選：專案連結
-  image?: string; // 可選：專案圖片
+  link?: string;
+  images?: string[]; // 圖片陣列（支援多張圖片）
 }
-
-// 為什麼這樣設計？
-// 1. title 和 description 都包含中英文
-// 2. 不需要兩個文件（projects.en.ts 和 projects.zh.ts）
-// 3. 所有數據集中管理，容易維護
 
 export const projects: Project[] = [
   {
@@ -38,7 +30,11 @@ export const projects: Project[] = [
     },
     year: "2016",
     tags: ["QRCODE", "AR", "Merge AR"],
-    link: "",
+    // ✅ 把你的圖片路徑放在這裡（記得改成你的實際路徑）
+    images: [
+      "/images/HighSchool/highschoolwork1.png",
+      "/images/HighSchool/highschoolwork2.png",
+    ],
   },
   {
     id: 2,
@@ -52,7 +48,10 @@ export const projects: Project[] = [
     },
     year: "2024",
     tags: ["TypeScript", "Express", "WebSocket", "PostgreSQL"],
-    link: "https://example.com",
+    images: [
+      "/images/task-app/screenshot1.png",
+      "/images/task-app/screenshot2.png",
+    ],
   },
   {
     id: 3,
@@ -66,32 +65,17 @@ export const projects: Project[] = [
     },
     year: "2023",
     tags: ["React", "API Integration", "Chart.js"],
-    link: "https://example.com",
+    images: ["/images/weather/screenshot1.png"],
   },
 ];
 
 // ════════════════════════════════════════════════════════════════
-// 💡 如何使用這些數據？
+// 📝 使用說明
 // ════════════════════════════════════════════════════════════════
 //
-// 在組件中：
-//
-// import { projects } from '../data/projects';
-// import { useLanguage } from '../contexts/LanguageContext';
-//
-// function ProjectsList() {
-//   const { language } = useLanguage();
-//
-//   return (
-//     <div>
-//       {projects.map(project => (
-//         <div key={project.id}>
-//           <h2>{project.title[language]}</h2>
-//           <p>{project.description[language]}</p>
-//         </div>
-//       ))}
-//     </div>
-//   );
-// }
+// 1. 把你的圖片放在 public/images/ 文件夾
+// 2. 路徑格式："/images/資料夾名稱/檔案名稱.png"
+// 3. 可以有多張圖片，也可以只有一張
+// 4. 如果沒有圖片，就不要寫 images 這行
 //
 // ════════════════════════════════════════════════════════════════
