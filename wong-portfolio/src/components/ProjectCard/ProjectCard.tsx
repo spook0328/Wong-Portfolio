@@ -1,6 +1,3 @@
-// src/components/ProjectCard/ProjectCard.tsx
-// ✅ 直接用這個文件替換你現有的 ProjectCard.tsx
-
 import { useState } from "react";
 import type { Project } from "../../data/projects";
 import { useLanguage } from "../../contexts/LanguageContext";
@@ -10,47 +7,66 @@ interface ProjectCardProps {
   project: Project;
 }
 
+function getYouTubeVideoId(url: string): string | null {
+  // 支援兩種格式：
+  // 1. https://youtu.be/VIDEO_ID
+  // 2. https://www.youtube.com/watch?v=VIDEO_ID
+
+  const patterns = [
+    /youtu\.be\/([a-zA-Z0-9_-]+)/, // youtu.be 格式
+    /youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/, // youtube.com 格式
+  ];
+
+  for (const pattern of patterns) {
+    const match = url.match(pattern);
+    if (match && match[1]) {
+      return match[1];
+    }
+  }
+
+  return null;
+}
+
 export default function ProjectCard({ project }: ProjectCardProps) {
   const { language } = useLanguage();
 
   const title = project.title[language];
   const description = project.description[language];
 
-  // 追蹤當前顯示第幾張圖片（從 0 開始）
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  // 追蹤當前顯示的媒體索引
+  const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
 
-  // 計算總共有幾張圖片
-  const totalImages = project.images?.length || 0;
+  // 計算總媒體數量
+  const totalMedia = project.media?.length || 0;
 
-  // 上一張圖片
+  // 上一個媒體
   const goToPrevious = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setCurrentImageIndex((prevIndex) => {
+    setCurrentMediaIndex((prevIndex) => {
       if (prevIndex === 0) {
-        return totalImages - 1; // 回到最後一張
+        return totalMedia - 1;
       }
       return prevIndex - 1;
     });
   };
 
-  // 下一張圖片
+  // 下一個媒體
   const goToNext = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setCurrentImageIndex((prevIndex) => {
-      if (prevIndex === totalImages - 1) {
-        return 0; // 回到第一張
+    setCurrentMediaIndex((prevIndex) => {
+      if (prevIndex === totalMedia - 1) {
+        return 0;
       }
       return prevIndex + 1;
     });
   };
 
-  // 點擊指示點跳到指定圖片
-  const goToImage = (index: number, e: React.MouseEvent) => {
+  // 跳到指定媒體
+  const goToMedia = (index: number, e: React.MouseEvent) => {
     e.stopPropagation();
-    setCurrentImageIndex(index);
+    setCurrentMediaIndex(index);
   };
 
-  // 點擊卡片打開連結
   const handleClick = () => {
     if (project.link) {
       window.open(project.link, "_blank");
@@ -81,25 +97,55 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           </div>
         </div>
 
-        {/* 右側：圖片輪播 */}
-        {project.images && project.images.length > 0 && (
+        {/* 右側：媒體輪播（圖片或影片） */}
+        {project.media && project.media.length > 0 && (
           <div className="project-carousel-section">
             <div className="carousel-container">
-              {/* 當前圖片 */}
-              <img
-                src={project.images[currentImageIndex]}
-                alt={`${title} - ${currentImageIndex + 1}`}
-                className="carousel-image"
-                loading="lazy"
-              />
+              {/* ══════════════════════════════════════════════════
+                  根據媒體類型顯示不同內容
+                  ══════════════════════════════════════════════════ */}
 
-              {/* 左右箭頭（只在有多張圖片時顯示） */}
-              {totalImages > 1 && (
+              {(() => {
+                const currentMedia = project.media![currentMediaIndex];
+
+                if (currentMedia.type === "image") {
+                  // 顯示圖片
+                  return (
+                    <img
+                      src={currentMedia.url}
+                      alt={`${title} - ${currentMediaIndex + 1}`}
+                      className="carousel-image"
+                      loading="lazy"
+                    />
+                  );
+                } else if (currentMedia.type === "youtube") {
+                  // 顯示 YouTube 影片
+                  const videoId = getYouTubeVideoId(currentMedia.url);
+
+                  if (videoId) {
+                    return (
+                      <iframe
+                        className="carousel-video"
+                        src={`https://www.youtube.com/embed/${videoId}`}
+                        title={`${title} - Video ${currentMediaIndex + 1}`}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    );
+                  }
+                }
+
+                return null;
+              })()}
+
+              {/* 左右箭頭（只在有多個媒體時顯示） */}
+              {totalMedia > 1 && (
                 <>
                   <button
                     className="carousel-button carousel-button-prev"
                     onClick={goToPrevious}
-                    aria-label="Previous image"
+                    aria-label="Previous media"
                   >
                     ←
                   </button>
@@ -107,7 +153,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                   <button
                     className="carousel-button carousel-button-next"
                     onClick={goToNext}
-                    aria-label="Next image"
+                    aria-label="Next media"
                   >
                     →
                   </button>
@@ -115,22 +161,23 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               )}
             </div>
 
-            {/* 指示點和計數（只在有多張圖片時顯示） */}
-            {totalImages > 1 && (
+            {/* 指示點和計數（只在有多個媒體時顯示） */}
+            {totalMedia > 1 && (
               <div className="carousel-indicators">
-                {project.images.map((_, index) => (
+                {project.media.map((media, index) => (
                   <button
                     key={index}
                     className={`indicator-dot ${
-                      index === currentImageIndex ? "active" : ""
-                    }`}
-                    onClick={(e) => goToImage(index, e)}
-                    aria-label={`Go to image ${index + 1}`}
+                      index === currentMediaIndex ? "active" : ""
+                    } ${media.type === "youtube" ? "indicator-video" : ""}`}
+                    onClick={(e) => goToMedia(index, e)}
+                    aria-label={`Go to ${media.type} ${index + 1}`}
+                    title={media.type === "youtube" ? "Video" : "Image"}
                   />
                 ))}
 
                 <span className="image-counter">
-                  {currentImageIndex + 1} / {totalImages}
+                  {currentMediaIndex + 1} / {totalMedia}
                 </span>
               </div>
             )}
@@ -140,3 +187,42 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     </article>
   );
 }
+
+// ════════════════════════════════════════════════════════════════
+// 🎓 學習要點
+// ════════════════════════════════════════════════════════════════
+//
+// 1. **立即執行函數 (IIFE)**
+//    {(() => { ... })()}
+//    - 在 JSX 中執行複雜邏輯
+//    - 根據條件返回不同的元素
+//
+// 2. **YouTube 嵌入**
+//    <iframe src="https://www.youtube.com/embed/VIDEO_ID" />
+//    - 從網址提取 VIDEO_ID
+//    - 用 iframe 嵌入播放器
+//
+// 3. **區分媒體類型**
+//    if (media.type === 'image') { 顯示圖片 }
+//    else if (media.type === 'youtube') { 顯示影片 }
+//
+// 4. **視覺區分**
+//    圓點加上 'indicator-video' class
+//    可以用不同顏色或圖示區分圖片和影片
+//
+// ════════════════════════════════════════════════════════════════
+
+// ════════════════════════════════════════════════════════════════
+// 💡 YouTube 網址格式說明
+// ════════════════════════════════════════════════════════════════
+//
+// 支援的格式：
+// 1. https://youtu.be/94ThqaZx8Js
+// 2. https://www.youtube.com/watch?v=94ThqaZx8Js
+//
+// 提取 VIDEO_ID：94ThqaZx8Js
+//
+// 嵌入格式：
+// https://www.youtube.com/embed/94ThqaZx8Js
+//
+// ════════════════════════════════════════════════════════════════

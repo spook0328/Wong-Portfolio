@@ -3,10 +3,8 @@
 import { createContext, useContext, useState } from "react";
 import type { ReactNode } from "react";
 
-// ════════════════════════════════════════════════════════════════
-// 📚 學習重點 1：什麼是 Context？
-// ════════════════════════════════════════════════════════════════
-// Context 就像一個「全局變數倉庫」
+//📚 學習重點 1：什麼是 Context？
+// // Context 就像一個「全局變數倉庫」
 // 任何組件都可以訪問，不需要一層層傳遞 props
 
 type Language = "en" | "zh";
@@ -43,7 +41,7 @@ const translations: Record<Language, Record<string, string>> = {
     "about.database": "Database",
     "about.tools": "Tools",
 
-    "projects.title": "Selected Works",
+    "projects.title": "Projects ",
   },
   zh: {
     "nav.home": "首頁",
