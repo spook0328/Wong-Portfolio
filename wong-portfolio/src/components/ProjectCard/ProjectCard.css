@@ -1,5 +1,5 @@
 /* src/components/ProjectCard/ProjectCard.css */
-/* ✅ 適配不同尺寸的圖片（橫向、直向都能完整顯示） */
+/* ✅ 完整版：支援圖片、影片、連結按鈕 */
 
 .project-card {
   border-top: 1px solid #000000;
@@ -8,19 +8,15 @@
   transition: opacity 0.3s ease;
 }
 
-.project-card.clickable {
-  cursor: pointer;
-}
-
-.project-card.clickable:hover {
-  opacity: 0.7;
-}
-
 .project-content-wrapper {
   display: flex;
   gap: 3rem;
   align-items: flex-start;
 }
+
+/* ══════════════════════════════════════════════════════════
+   左側：文字內容
+   ══════════════════════════════════════════════════════════ */
 
 .project-text-section {
   flex: 1;
@@ -78,7 +74,75 @@
 }
 
 /* ══════════════════════════════════════════════════════════
-   輪播區域
+   連結按鈕區域
+   ══════════════════════════════════════════════════════════ */
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.project-link-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid #000000;
+  background-color: #ffffff;
+  color: #000000;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+}
+
+.project-link-button:hover {
+  background-color: #000000;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.project-link-button:active {
+  transform: translateY(0);
+}
+
+.link-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.link-text {
+  line-height: 1;
+}
+
+/* GitHub 按鈕特殊顏色 */
+.project-link-button.github:hover {
+  background-color: #24292e;
+  border-color: #24292e;
+  color: #ffffff;
+}
+
+/* Demo 按鈕特殊顏色 */
+.project-link-button.demo:hover {
+  background-color: #0066cc;
+  border-color: #0066cc;
+  color: #ffffff;
+}
+
+/* Video 按鈕特殊顏色 */
+.project-link-button.video:hover {
+  background-color: #ff0000;
+  border-color: #ff0000;
+  color: #ffffff;
+}
+
+/* ══════════════════════════════════════════════════════════
+   右側：媒體輪播
    ══════════════════════════════════════════════════════════ */
 
 .project-carousel-section {
@@ -91,9 +155,8 @@
 .carousel-container {
   position: relative;
   width: 100%;
-  /* ✅ 改用 min-height 而不是固定 aspect-ratio */
-  min-height: 240px; /* 最小高度 */
-  max-height: 400px; /* 最大高度 */
+  min-height: 240px;
+  max-height: 400px;
   overflow: hidden;
   background-color: #f5f5f5;
   border: 1px solid #e0e0e0;
@@ -102,50 +165,17 @@
   justify-content: center;
 }
 
-/* 📚 學習重點：為什麼這樣改？
-   - aspect-ratio 會強制固定比例
-   - min-height + max-height 更靈活
-   - display: flex + center 讓圖片居中
-*/
-
-/* ══════════════════════════════════════════════════════════
-   圖片樣式 - 關鍵修改！
-   ══════════════════════════════════════════════════════════ */
-
+/* 圖片樣式 - 完整顯示 */
 .carousel-image {
-  /* ✅ 改成 contain：完整顯示圖片，不裁切 */
   object-fit: contain;
-
-  /* 限制最大尺寸，防止圖片太大 */
   max-width: 100%;
   max-height: 100%;
-
-  /* 讓圖片自適應 */
   width: auto;
   height: auto;
-
   transition: opacity 0.3s ease;
 }
 
-/* 📚 object-fit 對比：
-   
-   cover（之前）：
-   ┌────────────┐
-   │ [圖片被裁] │  ← 填滿容器，但會裁切
-   └────────────┘
-   
-   contain（現在）：
-   ┌────────────┐
-   │            │
-   │  [完整圖]  │  ← 完整顯示，可能有留白
-   │            │
-   └────────────┘
-*/
-
-/* ══════════════════════════════════════════════════════════
-   影片樣式
-   ══════════════════════════════════════════════════════════ */
-
+/* 影片樣式 */
 .carousel-video {
   width: 100%;
   height: 100%;
@@ -154,7 +184,7 @@
 }
 
 /* ══════════════════════════════════════════════════════════
-   箭頭按鈕
+   輪播箭頭
    ══════════════════════════════════════════════════════════ */
 
 .carousel-button {
@@ -185,12 +215,12 @@
   right: 1rem;
 }
 
-.carousel-button:hover {
+/* .carousel-button:hover {
   opacity: 1;
   background-color: #000000;
   color: #ffffff;
   transform: translateY(-50%) scale(1.1);
-}
+} */
 
 .carousel-button:active {
   transform: translateY(-50%) scale(0.95);
@@ -257,10 +287,6 @@
   }
 }
 
-/* ══════════════════════════════════════════════════════════
-   響應式設計：平板（改成上下排列）
-   ══════════════════════════════════════════════════════════ */
-
 @media (max-width: 768px) {
   .project-content-wrapper {
     flex-direction: column;
@@ -272,7 +298,6 @@
     width: 100%;
   }
 
-  /* 平板上稍微高一點 */
   .carousel-container {
     min-height: 300px;
     max-height: 500px;
@@ -305,7 +330,16 @@
     gap: 1.5rem;
   }
 
-  /* 手機上更高一點，適應直向圖片 */
+  /* 手機上按鈕垂直堆疊 */
+  .project-links {
+    flex-direction: column;
+  }
+
+  .project-link-button {
+    width: 100%;
+    justify-content: center;
+  }
+
   .carousel-container {
     min-height: 250px;
     max-height: 400px;
@@ -335,34 +369,3 @@
     height: 8px;
   }
 }
-
-/* ══════════════════════════════════════════════════════════
-   💡 進階選項：如果你想要不同的背景
-   ══════════════════════════════════════════════════════════ */
-
-/* 選項 1：純白背景（更乾淨） */
-/*
-.carousel-container {
-  background-color: #ffffff;
-}
-*/
-
-/* 選項 2：淺灰格子背景（像 Photoshop） */
-/*
-.carousel-container {
-  background-image: 
-    linear-gradient(45deg, #f0f0f0 25%, transparent 25%),
-    linear-gradient(-45deg, #f0f0f0 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #f0f0f0 75%),
-    linear-gradient(-45deg, transparent 75%, #f0f0f0 75%);
-  background-size: 20px 20px;
-  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-}
-*/
-
-/* 選項 3：陰影效果（讓圖片更立體） */
-/*
-.carousel-image {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
-*/

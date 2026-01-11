@@ -1,3 +1,6 @@
+// src/components/ProjectCard/ProjectCard.tsx
+// ✅ 完整版：支援圖片、影片、連結按鈕
+
 import { useState } from "react";
 import type { Project } from "../../data/projects";
 import { useLanguage } from "../../contexts/LanguageContext";
@@ -7,14 +10,12 @@ interface ProjectCardProps {
   project: Project;
 }
 
+// YouTube 影片 ID 提取
 function getYouTubeVideoId(url: string): string | null {
-  // 支援兩種格式：
-  // 1. https://youtu.be/VIDEO_ID
-  // 2. https://www.youtube.com/watch?v=VIDEO_ID
-
   const patterns = [
-    /youtu\.be\/([a-zA-Z0-9_-]+)/, // youtu.be 格式
-    /youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/, // youtube.com 格式
+    /youtu\.be\/([a-zA-Z0-9_-]+)/,
+    /youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/,
+    /youtube\.com\/shorts\/([a-zA-Z0-9_-]+)/,
   ];
 
   for (const pattern of patterns) {
@@ -27,19 +28,49 @@ function getYouTubeVideoId(url: string): string | null {
   return null;
 }
 
+// 按鈕文字
+function getLinkButtonText(
+  type: string,
+  language: "en" | "zh",
+  customLabel?: { en: string; zh: string }
+): string {
+  if (customLabel) {
+    return customLabel[language];
+  }
+
+  const defaultLabels: Record<string, { en: string; zh: string }> = {
+    github: { en: "GitHub", zh: "GitHub" },
+    website: { en: "Website", zh: "網站" },
+    demo: { en: "Demo", zh: "試玩" },
+    video: { en: "Video", zh: "影片" },
+    other: { en: "Link", zh: "連結" },
+  };
+
+  return defaultLabels[type]?.[language] || defaultLabels.other[language];
+}
+
+// 按鈕圖示
+function getLinkButtonIcon(type: string): string {
+  const icons: Record<string, string> = {
+    github: "⚡",
+    website: "🌐",
+    demo: "🎮",
+    video: "🎬",
+    other: "🔗",
+  };
+
+  return icons[type] || icons.other;
+}
+
 export default function ProjectCard({ project }: ProjectCardProps) {
   const { language } = useLanguage();
 
   const title = project.title[language];
   const description = project.description[language];
 
-  // 追蹤當前顯示的媒體索引
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
-
-  // 計算總媒體數量
   const totalMedia = project.media?.length || 0;
 
-  // 上一個媒體
   const goToPrevious = (e: React.MouseEvent) => {
     e.stopPropagation();
     setCurrentMediaIndex((prevIndex) => {
@@ -50,7 +81,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     });
   };
 
-  // 下一個媒體
   const goToNext = (e: React.MouseEvent) => {
     e.stopPropagation();
     setCurrentMediaIndex((prevIndex) => {
@@ -61,23 +91,13 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     });
   };
 
-  // 跳到指定媒體
   const goToMedia = (index: number, e: React.MouseEvent) => {
     e.stopPropagation();
     setCurrentMediaIndex(index);
   };
 
-  const handleClick = () => {
-    if (project.link) {
-      window.open(project.link, "_blank");
-    }
-  };
-
   return (
-    <article
-      className={`project-card ${project.link ? "clickable" : ""}`}
-      onClick={handleClick}
-    >
+    <article className="project-card">
       <div className="project-content-wrapper">
         {/* 左側：文字內容 */}
         <div className="project-text-section">
@@ -95,21 +115,39 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               </span>
             ))}
           </div>
+
+          {/* ✅ 連結按鈕區域 */}
+          {project.links && project.links.length > 0 && (
+            <div className="project-links">
+              {project.links.map((link, index) => (
+                <a
+                  key={index}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`project-link-button ${link.type}`}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <span className="link-icon">
+                    {getLinkButtonIcon(link.type)}
+                  </span>
+                  <span className="link-text">
+                    {getLinkButtonText(link.type, language, link.label)}
+                  </span>
+                </a>
+              ))}
+            </div>
+          )}
         </div>
 
-        {/* 右側：媒體輪播（圖片或影片） */}
+        {/* 右側：媒體輪播 */}
         {project.media && project.media.length > 0 && (
           <div className="project-carousel-section">
             <div className="carousel-container">
-              {/* ══════════════════════════════════════════════════
-                  根據媒體類型顯示不同內容
-                  ══════════════════════════════════════════════════ */}
-
               {(() => {
                 const currentMedia = project.media![currentMediaIndex];
 
                 if (currentMedia.type === "image") {
-                  // 顯示圖片
                   return (
                     <img
                       src={currentMedia.url}
@@ -119,7 +157,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                     />
                   );
                 } else if (currentMedia.type === "youtube") {
-                  // 顯示 YouTube 影片
                   const videoId = getYouTubeVideoId(currentMedia.url);
 
                   if (videoId) {
@@ -139,7 +176,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 return null;
               })()}
 
-              {/* 左右箭頭（只在有多個媒體時顯示） */}
               {totalMedia > 1 && (
                 <>
                   <button
@@ -161,7 +197,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               )}
             </div>
 
-            {/* 指示點和計數（只在有多個媒體時顯示） */}
             {totalMedia > 1 && (
               <div className="carousel-indicators">
                 {project.media.map((media, index) => (
@@ -187,42 +222,3 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     </article>
   );
 }
-
-// ════════════════════════════════════════════════════════════════
-// 🎓 學習要點
-// ════════════════════════════════════════════════════════════════
-//
-// 1. **立即執行函數 (IIFE)**
-//    {(() => { ... })()}
-//    - 在 JSX 中執行複雜邏輯
-//    - 根據條件返回不同的元素
-//
-// 2. **YouTube 嵌入**
-//    <iframe src="https://www.youtube.com/embed/VIDEO_ID" />
-//    - 從網址提取 VIDEO_ID
-//    - 用 iframe 嵌入播放器
-//
-// 3. **區分媒體類型**
-//    if (media.type === 'image') { 顯示圖片 }
-//    else if (media.type === 'youtube') { 顯示影片 }
-//
-// 4. **視覺區分**
-//    圓點加上 'indicator-video' class
-//    可以用不同顏色或圖示區分圖片和影片
-//
-// ════════════════════════════════════════════════════════════════
-
-// ════════════════════════════════════════════════════════════════
-// 💡 YouTube 網址格式說明
-// ════════════════════════════════════════════════════════════════
-//
-// 支援的格式：
-// 1. https://youtu.be/94ThqaZx8Js
-// 2. https://www.youtube.com/watch?v=94ThqaZx8Js
-//
-// 提取 VIDEO_ID：94ThqaZx8Js
-//
-// 嵌入格式：
-// https://www.youtube.com/embed/94ThqaZx8Js
-//
-// ════════════════════════════════════════════════════════════════
