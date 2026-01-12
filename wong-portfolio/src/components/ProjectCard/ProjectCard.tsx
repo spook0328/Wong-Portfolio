@@ -1,6 +1,3 @@
-// src/components/ProjectCard/ProjectCard.tsx
-// ✅ 完整版：支援圖片、影片、連結按鈕
-
 import { useState } from "react";
 import type { Project } from "../../data/projects";
 import { useLanguage } from "../../contexts/LanguageContext";

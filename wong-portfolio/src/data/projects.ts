@@ -184,7 +184,7 @@ export const projects: Project[] = [
     ],
     media: [
       { type: "image", url: "/images/codelearning/game1.jpg" },
-      { type: "image", url: "images/codelearning/game2.jpg" },
+      { type: "image", url: "/images/codelearning/game2.jpg" },
     ],
   },
   {
