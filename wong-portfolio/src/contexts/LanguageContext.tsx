@@ -32,9 +32,9 @@ const translations: Record<Language, Record<string, string>> = {
 
     "about.title": "About Me",
     "about.intro":
-      "Hi, I'm Eric Wong, a passionate full-stack developer focused on creating clean, efficient, and user-friendly digital experiences.",
+      "Hi, I’m Eric Wong, a front-end developer and web designer with an academic background in Educational Technology and Interactive Learning Systems.",
     "about.description":
-      "I specialize in modern web technologies and enjoy turning complex problems into simple, elegant solutions.",
+      "Over the past few years, I've been involved in multiple educational technology projects, ranging from interactive game development and experimental system design to data analysis and cross-disciplinary collaboration. These experiences deepened my understanding of transforming technical concepts into practical, user-friendly solutions. Currently, I'm focusing on web development and front-end technologies, working with React, JavaScript, HTML, and CSS. I enjoy turning complex ideas into intuitive, elegant interfaces while continuously expanding my full-stack development skills. I look forward to contributing to projects that integrate technology, design, and user experience to create meaningful impact.",
     "about.skills": "Skills",
     "about.frontend": "Frontend",
     "about.backend": "Backend",
@@ -53,9 +53,9 @@ const translations: Record<Language, Record<string, string>> = {
       "深耕於程式及教育，用簡潔程式碼和直觀設計打造新的數位體驗。",
 
     "about.title": "關於我",
-    "about.intro": "嗨，我是 翁睿昕，一位熱衷於網頁設計的開發者。",
+    "about.intro": "嗨，我是 翁睿昕，網頁設計與開發者。",
     "about.description":
-      "熟悉現代網頁技術，享受將複雜問題轉化為簡單、優雅解決方案的過程。",
+      "過去幾年，我參與了多項教育科技專案，從互動遊戲開發、實驗系統設計到資料分析與跨領域協作。這些經驗讓我深入理解如何將技術轉化為實用且易於理解的解決方案。目前我專注於網頁開發與前端技術的學習，使用 React、JavaScript、HTML、CSS 進行開發。我享受將複雜概念轉換成直覺、易用且美觀的介面，並持續精進全端開發與系統架構能力。期待參與更多結合科技、設計與使用者體驗的專案，創造實質價值。",
     "about.skills": "技能",
     "about.frontend": "前端",
     "about.backend": "後端",

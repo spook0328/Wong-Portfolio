@@ -167,6 +167,29 @@ export const projects: Project[] = [
   {
     id: 8,
     title: {
+      en: "Coding Games",
+      zh: "程式小遊戲",
+    },
+    description: {
+      en: "This collection of mini-games was developed using JavaScript, HTML, and CSS to practice frontend programming and interactive web design. Through implementing game logic and user interactions, I exercised key front-end concepts such as event handling, animation rendering, collision detection, state management, and DOM manipulation. The focus of these projects is to strengthen technical proficiency while creating responsive and engaging gameplay experiences.",
+      zh: "本系列小型遊戲以 JavaScript、HTML 與 CSS 實作，主要目的在於練習前端程式開發流程與互動式網頁設計。透過遊戲機制實作事件監聽、動畫渲染、碰撞判定、狀態管理與 DOM 操控等核心技術，強化了我在前端技術上的理解與實作能力。作品著重於程式邏輯與遊戲互動體驗，並兼顧操作流暢度與畫面呈現。",
+    },
+    year: "2024",
+    tags: ["Javascript", "HTML", "CSS"],
+    links: [
+      {
+        type: "github",
+        url: "https://github.com/spook0328/Codelearning",
+      },
+    ],
+    media: [
+      { type: "image", url: "/images/codelearning/game1.jpg" },
+      { type: "image", url: "images/codelearning/game2.jpg" },
+    ],
+  },
+  {
+    id: 9,
+    title: {
       en: "Java Assignment - Employee Payroll Management System",
       zh: "Java 作業 - 員工薪資管理系統",
     },
@@ -189,7 +212,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 9,
+    id: 10,
     title: {
       en: "ASP.NET Assignment",
       zh: "ASP.NET 作業",
