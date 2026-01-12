@@ -1,6 +1,3 @@
-// src/data/projects.ts
-// ✅ 完整版：支援圖片、影片、多個連結按鈕
-
 export interface Project {
   id: number;
   title: {
@@ -13,7 +10,6 @@ export interface Project {
   };
   year: string;
   tags: string[];
-  // ✅ 連結按鈕（可以有多個：GitHub、網站、Demo 等）
   links?: Array<{
     type: "website" | "github" | "demo" | "video" | "other";
     url: string;
@@ -22,7 +18,6 @@ export interface Project {
       zh: string;
     };
   }>;
-  // ✅ 媒體輪播（圖片或 YouTube 影片）
   media?: Array<{
     type: "image" | "youtube";
     url: string;
@@ -42,12 +37,10 @@ export const projects: Project[] = [
     },
     year: "2016",
     tags: ["QRCODE", "AR", "Web"],
-    // ✅ 如果有 GitHub 或網站連結，加在這裡
-    // links: [
-    //   { type: "github", url: "https://github.com/..." },
-    //   { type: "website", url: "https://..." },
-    // ],
-    media: [{ type: "image", url: "/images/HighSchool/highschoolwork1.png" }],
+    media: [
+      { type: "image", url: "/images/HighSchool/Hsw1.png" },
+      { type: "image", url: "/images/HighSchool/Hsw2.png" },
+    ],
   },
   {
     id: 2,
@@ -62,8 +55,8 @@ export const projects: Project[] = [
     year: "2018",
     tags: ["Construct 2", "Block-based coding"],
     media: [
-      { type: "image", url: "/images/Most/MOST1.png" },
-      { type: "image", url: "/images/Most/MOST2.png" },
+      { type: "image", url: "/images/Most/Most1.png" },
+      { type: "image", url: "/images/Most/Most2.png" },
     ],
   },
   {
@@ -78,7 +71,7 @@ export const projects: Project[] = [
     },
     year: "2019",
     tags: ["CoSpaces Cube", "Blender", "AR"],
-    media: [{ type: "image", url: "/images/Most/MOSTAR1.png" }],
+    media: [{ type: "image", url: "/images/Most/MostAR.png" }],
   },
   {
     id: 4,
@@ -151,7 +144,6 @@ export const projects: Project[] = [
     },
     year: "2022",
     tags: ["Unity", "Vuforia", "AR"],
-
     links: [
       {
         type: "website",
@@ -159,9 +151,9 @@ export const projects: Project[] = [
       },
     ],
     media: [
-      { type: "image", url: "/images/NTNU/bjs_1.png" },
-      { type: "image", url: "/images/NTNU/bjs_2.png" },
-      { type: "image", url: "/images/NTNU/bjs_3.png" },
+      { type: "image", url: "/images/NTNU/bjs1.png" },
+      { type: "image", url: "/images/NTNU/bjs2.png" },
+      { type: "image", url: "/images/NTNU/bjs3.png" },
     ],
   },
   {
@@ -183,8 +175,8 @@ export const projects: Project[] = [
       },
     ],
     media: [
-      { type: "image", url: "/images/codelearning/game1.jpg" },
-      { type: "image", url: "/images/codelearning/game2.jpg" },
+      { type: "image", url: "/images/Codelearning/game1.jpg" },
+      { type: "image", url: "/images/Codelearning/game2.jpg" },
     ],
   },
   {
@@ -206,9 +198,9 @@ export const projects: Project[] = [
       },
     ],
     media: [
-      { type: "image", url: "/images/GBC/Java/Javaa2-1.png" },
-      { type: "image", url: "/images/GBC/Java/Javaa2-2.png" },
-      { type: "image", url: "/images/GBC/Java/Javaa2-3.png" },
+      { type: "image", url: "/images/GBC/Java/Javaa21.png" },
+      { type: "image", url: "/images/GBC/Java/Javaa22.png" },
+      { type: "image", url: "/images/GBC/Java/Javaa23.png" },
     ],
   },
   {
@@ -230,10 +222,10 @@ export const projects: Project[] = [
       },
     ],
     media: [
-      { type: "image", url: "/images/GBC/Aspnet/Asp-1.png" },
-      { type: "image", url: "/images/GBC/Aspnet/Asp-2.png" },
-      { type: "image", url: "/images/GBC/Aspnet/Asp-3.png" },
-      { type: "image", url: "/images/GBC/Aspnet/Asp-4.png" },
+      { type: "image", url: "/images/GBC/Aspnet/Asp1.png" },
+      { type: "image", url: "/images/GBC/Aspnet/Asp2.png" },
+      { type: "image", url: "/images/GBC/Aspnet/Asp3.png" },
+      { type: "image", url: "/images/GBC/Aspnet/Asp4.png" },
     ],
   },
 ];

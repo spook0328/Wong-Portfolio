@@ -18,7 +18,7 @@ export default function About() {
 
             <div className="about-pic">
               <img
-                src="./public/profile_pic.jpg"
+                src="/profile_pic.jpg"
                 alt="profile_pic"
                 className="profile-pic"
               />
