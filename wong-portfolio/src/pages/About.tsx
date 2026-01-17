@@ -1,5 +1,6 @@
 import "./About.css";
 import { useLanguage } from "../contexts/LanguageContext";
+const BASE_PATH = import.meta.env.BASE_URL;
 
 export default function About() {
   const { t } = useLanguage();
@@ -18,7 +19,7 @@ export default function About() {
 
             <div className="about-pic">
               <img
-                src="/profile_pic.jpg"
+                src={`${BASE_PATH}profile_pic.jpg`}
                 alt="profile_pic"
                 className="profile-pic"
               />

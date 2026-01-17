@@ -24,6 +24,8 @@ export interface Project {
   }>;
 }
 
+const BASE_PATH = import.meta.env.BASE_URL;
+
 export const projects: Project[] = [
   {
     id: 1,
@@ -38,8 +40,8 @@ export const projects: Project[] = [
     year: "2016",
     tags: ["QRCODE", "AR", "Web"],
     media: [
-      { type: "image", url: "/images/HighSchool/Hsw1.png" },
-      { type: "image", url: "/images/HighSchool/Hsw2.png" },
+      { type: "image", url: `${BASE_PATH}images/HighSchool/Hsw1.png` },
+      { type: "image", url: `${BASE_PATH}images/HighSchool/Hsw2.png` },
     ],
   },
   {
@@ -55,8 +57,8 @@ export const projects: Project[] = [
     year: "2018",
     tags: ["Construct 2", "Block-based coding"],
     media: [
-      { type: "image", url: "/images/Most/Most1.png" },
-      { type: "image", url: "/images/Most/Most2.png" },
+      { type: "image", url: `${BASE_PATH}images/Most/Most1.png` },
+      { type: "image", url: `${BASE_PATH}images/Most/Most2.png` },
     ],
   },
   {
@@ -71,7 +73,7 @@ export const projects: Project[] = [
     },
     year: "2019",
     tags: ["CoSpaces Cube", "Blender", "AR"],
-    media: [{ type: "image", url: "/images/Most/MostAR.png" }],
+    media: [{ type: "image", url: `${BASE_PATH}images/Most/MostAR.png` }],
   },
   {
     id: 4,
@@ -86,8 +88,8 @@ export const projects: Project[] = [
     year: "2019",
     tags: ["Construct 2", "Block-based coding"],
     media: [
-      { type: "image", url: "/images/TKU/Hong1.png" },
-      { type: "image", url: "/images/TKU/Hong2.png" },
+      { type: "image", url: `${BASE_PATH}images/TKU/Hong1.png` },
+      { type: "image", url: `${BASE_PATH}images/TKU/Hong2.png` },
     ],
   },
   {
@@ -151,9 +153,9 @@ export const projects: Project[] = [
       },
     ],
     media: [
-      { type: "image", url: "/images/NTNU/bjs1.png" },
-      { type: "image", url: "/images/NTNU/bjs2.png" },
-      { type: "image", url: "/images/NTNU/bjs3.png" },
+      { type: "image", url: `${BASE_PATH}images/NTNU/bjs1.png` },
+      { type: "image", url: `${BASE_PATH}images/NTNU/bjs2.png` },
+      { type: "image", url: `${BASE_PATH}images/NTNU/bjs3.png` },
     ],
   },
   {
@@ -175,8 +177,8 @@ export const projects: Project[] = [
       },
     ],
     media: [
-      { type: "image", url: "/images/Codelearning/game1.jpg" },
-      { type: "image", url: "/images/Codelearning/game2.jpg" },
+      { type: "image", url: `${BASE_PATH}images/Codelearning/game1.jpg` },
+      { type: "image", url: `${BASE_PATH}images/Codelearning/game2.jpg` },
     ],
   },
   {
@@ -198,9 +200,9 @@ export const projects: Project[] = [
       },
     ],
     media: [
-      { type: "image", url: "/images/GBC/Java/Javaa21.png" },
-      { type: "image", url: "/images/GBC/Java/Javaa22.png" },
-      { type: "image", url: "/images/GBC/Java/Javaa23.png" },
+      { type: "image", url: `${BASE_PATH}images/GBC/Java/Javaa21.png` },
+      { type: "image", url: `${BASE_PATH}images/GBC/Java/Javaa22.png` },
+      { type: "image", url: `${BASE_PATH}images/GBC/Java/Javaa23.png` },
     ],
   },
   {
@@ -222,10 +224,10 @@ export const projects: Project[] = [
       },
     ],
     media: [
-      { type: "image", url: "/images/GBC/Aspnet/Asp1.png" },
-      { type: "image", url: "/images/GBC/Aspnet/Asp2.png" },
-      { type: "image", url: "/images/GBC/Aspnet/Asp3.png" },
-      { type: "image", url: "/images/GBC/Aspnet/Asp4.png" },
+      { type: "image", url: `${BASE_PATH}images/GBC/Aspnet/Asp1.png` },
+      { type: "image", url: `${BASE_PATH}images/GBC/Aspnet/Asp2.png` },
+      { type: "image", url: `${BASE_PATH}images/GBC/Aspnet/Asp3.png` },
+      { type: "image", url: `${BASE_PATH}images/GBC/Aspnet/Asp4.png` },
     ],
   },
 ];
