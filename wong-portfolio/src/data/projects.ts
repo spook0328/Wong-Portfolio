@@ -246,7 +246,10 @@ export const projects: Project[] = [
       "MVC",
       "Front-end",
       "Database",
-      "PostgreSQL, Jira, Googl Api, Render ",
+      "PostgreSQL",
+      "Jira",
+      "Googl Api",
+      "Render ",
     ],
     links: [
       {
