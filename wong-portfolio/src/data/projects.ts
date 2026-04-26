@@ -230,4 +230,39 @@ export const projects: Project[] = [
       { type: "image", url: `${BASE_PATH}images/GBC/Aspnet/Asp4.png` },
     ],
   },
+  {
+    id: 11,
+    title: {
+      en: "Voyago Full-Stack Travel Planning Web Application",
+      zh: "Voyago 旅遊規劃網站",
+    },
+    description: {
+      en: "Voyago is a full-stack travel planning web application built as a semester-long, project-based capstone at George Brown Polytechnic. Our team followed an Agile methodology — using Jira, GitHub, and ASP.NET to bring the project from concept to deployment. The platform enables users to browse destinations, build personalized itineraries, and manage travel plans all in one place.",
+      zh: "Voyago 是我們在喬治布朗理工學院完成的全端旅遊規劃網頁應用程式，為期一學期的專案導向開發課程成果。團隊採用敏捷開發方法，運用 Jira、GitHub 與 ASP.NET，從概念發想到部署上線全程協作完成。平台提供目的地瀏覽、個人化行程建立與旅遊計畫管理等功能，讓旅行規劃更加輕鬆便",
+    },
+    year: "2026",
+    tags: [
+      "ASP.NET",
+      "MVC",
+      "Front-end",
+      "Database",
+      "PostgreSQL, Jira, Googl Api, Render ",
+    ],
+    links: [
+      {
+        type: "github",
+        url: "https://github.com/spook0328/Comp2154_Voyago",
+      },
+    ],
+    media: [
+      { type: "image", url: `${BASE_PATH}images/Voyago/1.png` },
+      { type: "image", url: `${BASE_PATH}images/Voyago/2.png` },
+      { type: "image", url: `${BASE_PATH}images/Voyago/3.png` },
+      { type: "image", url: `${BASE_PATH}images/Voyago/4.png` },
+      { type: "image", url: `${BASE_PATH}images/Voyago/5.png` },
+      { type: "image", url: `${BASE_PATH}images/Voyago/6.png` },
+      { type: "image", url: `${BASE_PATH}images/Voyago/7.png` },
+      { type: "image", url: `${BASE_PATH}images/Voyago/8.png` },
+    ],
+  },
 ];

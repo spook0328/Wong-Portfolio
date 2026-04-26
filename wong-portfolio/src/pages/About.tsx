@@ -29,12 +29,22 @@ export default function About() {
               <h2 className="section-title">{t("about.skills")}</h2>
               <div className="skills-grid">
                 <div className="skill-category">
-                  <h3 className="category-title">{t("about.frontend")}</h3>
+                  <h3 className="category-title">{t("about.programming")}</h3>
                   <ul className="skill-list">
-                    <li>React / TypeScript</li>
-                    <li>HTML / CSS</li>
+                    <li>Java</li>
+                    <li>C#</li>
+                    <li>Python</li>
                     <li>JavaScript</li>
                     <li>TypeScript</li>
+                  </ul>
+                </div>
+
+                <div className="skill-category">
+                  <h3 className="category-title">{t("about.frontend")}</h3>
+                  <ul className="skill-list">
+                    <li>React </li>
+                    <li>HTML </li>
+                    <li>CSS</li>
                   </ul>
                 </div>
 
@@ -44,8 +54,6 @@ export default function About() {
                     <li>Node.js</li>
                     <li>Express</li>
                     <li>PHP</li>
-                    <li>Java</li>
-                    <li>C#</li>
                   </ul>
                 </div>
 
@@ -65,6 +73,17 @@ export default function About() {
                     <li>Git / GitHub</li>
                     <li>VS Code</li>
                     <li>Linux</li>
+                  </ul>
+                </div>
+
+                <div className="skill-category">
+                  <h3 className="category-title">
+                    {t("about.STEM & Educational")}
+                  </h3>
+                  <ul className="skill-list">
+                    <li>LEGO Spike Prime</li>
+                    <li>Scratch</li>
+                    <li>Construct 3</li>
                   </ul>
                 </div>
               </div>

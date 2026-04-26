@@ -16,7 +16,7 @@ interface LanguageContextType {
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(
-  undefined
+  undefined,
 );
 
 // 翻譯字典
@@ -36,10 +36,12 @@ const translations: Record<Language, Record<string, string>> = {
     "about.description":
       "Over the past few years, I've been involved in multiple educational technology projects, ranging from interactive game development and experimental system design to data analysis and cross-disciplinary collaboration. These experiences deepened my understanding of transforming technical concepts into practical, user-friendly solutions. Currently, I'm focusing on web development and front-end technologies, working with React, JavaScript, HTML, and CSS. I enjoy turning complex ideas into intuitive, elegant interfaces while continuously expanding my full-stack development skills. I look forward to contributing to projects that integrate technology, design, and user experience to create meaningful impact.",
     "about.skills": "Skills",
+    "about.programming": "Programming",
     "about.frontend": "Frontend",
     "about.backend": "Backend",
     "about.database": "Database",
     "about.tools": "Tools",
+    "about.STEM & Educational": "STEM & Educational",
 
     "projects.title": "Projects ",
   },
@@ -57,10 +59,12 @@ const translations: Record<Language, Record<string, string>> = {
     "about.description":
       "過去幾年，我參與了多項教育科技專案，從互動遊戲開發、實驗系統設計到資料分析與跨領域協作。這些經驗讓我深入理解如何將技術轉化為實用且易於理解的解決方案。目前我專注於網頁開發與前端技術的學習，使用 React、JavaScript、HTML、CSS 進行開發。我享受將複雜概念轉換成直覺、易用且美觀的介面，並持續精進全端開發與系統架構能力。期待參與更多結合科技、設計與使用者體驗的專案，創造實質價值。",
     "about.skills": "技能",
+    "about.programming": "程式語言",
     "about.frontend": "前端",
     "about.backend": "後端",
     "about.database": "資料庫",
     "about.tools": "工具",
+    "about.STEM & Educational": "STEM & Educational",
 
     "projects.title": "精選作品",
   },
