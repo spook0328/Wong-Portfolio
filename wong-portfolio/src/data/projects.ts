@@ -258,6 +258,7 @@ export const projects: Project[] = [
       },
     ],
     media: [
+      { type: "youtube", url: "https://www.youtube.com/watch?v=MCHFoRUU9s0" },
       { type: "image", url: `${BASE_PATH}images/Voyago/1.png` },
       { type: "image", url: `${BASE_PATH}images/Voyago/2.png` },
       { type: "image", url: `${BASE_PATH}images/Voyago/3.png` },
