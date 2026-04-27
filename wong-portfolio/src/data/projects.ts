@@ -269,4 +269,29 @@ export const projects: Project[] = [
       { type: "image", url: `${BASE_PATH}images/Voyago/8.png` },
     ],
   },
+  {
+    id: 12,
+    title: {
+      en: "Tic-Tac-Toe Game with AI Opponent",
+      zh: "圈圈叉叉 (井字遊戲)",
+    },
+    description: {
+      en: "A Java-based Tic-Tac-Toe game developed as a group assignment for the COMP8080 Algorithms course. The project features both a two-player mode and a single-player mode against an AI opponent powered by the Minimax algorithm with Alpha-Beta Pruning, demonstrating core algorithmic concepts through an interactive text-based interface.",
+      zh: "這是一款以 Java 開發的井字遊戲，作為 COMP8080 演算法課程的小組作業。專案支援雙人對戰模式與單人對 AI 模式，AI 對手採用 Minimax 演算法搭配 Alpha-Beta 剪枝實作，透過互動式文字介面展示課程核心演算法概念。",
+    },
+    year: "2026",
+    tags: ["C#", "GitHub", "Algorithms"],
+    links: [
+      {
+        type: "github",
+        url: "https://github.com/spook0328/TicTacToe_with_AI",
+      },
+    ],
+    media: [
+      { type: "image", url: `${BASE_PATH}images/TicTaeToe/1.png` },
+      { type: "image", url: `${BASE_PATH}images/TicTaeToe/2.png` },
+      { type: "image", url: `${BASE_PATH}images/TicTaeToe/3.png` },
+      { type: "image", url: `${BASE_PATH}images/TicTaeToe/4.png` },
+    ],
+  },
 ];
